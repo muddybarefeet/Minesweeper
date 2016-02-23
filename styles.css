@@ -1,0 +1,24 @@
+
+html, body {
+  margin: 0;
+  height: 100%;
+  margin-top: 35px;
+}
+
+.flexBoard {
+  display: flex;
+  justify-content: flex-top;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+td {
+  border: 1px solid grey;
+  width: 50px;
+  height: 50px;
+}
+
+td:hover {
+  background-color: turquoise;
+}

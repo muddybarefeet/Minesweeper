@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+  </head>
+
+  <body class="">
+    <div class="flexBoard">
+      
+      <h1>Minesweeper</h1>
+
+      <div class="">
+        <table>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+
+
+    <script>
+      //game logic
+      // var board = [];//[[],[],[]]
+
+      // //fill the board with the correct number of row arrys(so can be altered with the row size change)
+      // var makeRow = function (num) {
+      //   for (var i = 0; i < num; i++) {
+      //     board.push(new Array(num));
+      //   }
+      // };
+      var checkSurroundingSquares = function (context) {
+        //return the count to add to the title property
+      };
+
+      //place the pieces: bombs first
+      //level 1: 20% level 2: 40% level 3: 60%
+      var placeBombs = function (level) {
+        var percent;
+        if (level === 1) {
+          percent = 0.15;
+        } else if (level === 2) {
+          percent = 0.3;
+        } else if (level === 3) {
+          percent = 0.6;
+        }
+
+        $('tr').children().each(function (element, i) {
+          if (Math.random() <= percent) {
+            i.title = 'bomb';
+          }
+        });
+
+      };
+
+      placeBombs(1)
+      // console.log($("tr").children());
+
+      //place numbers
+      var placeNumbers = function () {
+        //loop through the grid
+        $("tr").children().each(function (element, i) {
+          //if t is no bomb look at the surrounding squares
+          //set the sum of the bombs to the title of the square
+          //look at all surrounding squares and sum bombs
+          if (i.title !== 'bomb') {
+
+            var count = 0;
+            var columnNo = $(this).parent().children().index($(this));
+
+            // var next = $(this).next('td');
+            if ($(this).next('td').attr("title") === 'bomb') {
+              count++;
+            }
+            // var prev = $(this).prev('td');
+            if ($(this).prev('td').attr("title") === 'bomb') {
+              count++;
+            }
+            // var above = $(this).parent().prev('tr').children().eq(columnNo);
+            if ($(this).parent().prev('tr').children().eq(columnNo).attr("title") === 'bomb') {
+              count++;
+            }
+            // var aboveLeft = $(this).parent().prev('tr').children().eq(columnNo - 1);
+            if ($(this).parent().prev('tr').children().eq(columnNo - 1).attr("title") === 'bomb') {
+              count++;
+            }
+            // var aboveRight = $(this).parent().prev('tr').children().eq(columnNo + 1);
+            if ($(this).parent().prev('tr').children().eq(columnNo + 1).attr("title") === 'bomb') {
+              count++;
+            }
+            // var below = $(this).parent().next('tr').children().eq(columnNo);
+            if ($(this).parent().next('tr').children().eq(columnNo).attr("title") === 'bomb') {
+              count++;
+            }
+            // var belowLeft = $(this).parent().next('tr').children().eq(columnNo - 1);
+            if ($(this).parent().next('tr').children().eq(columnNo - 1).attr("title") === 'bomb') {
+              count++;
+            }
+            // var belowRight = $(this).parent().next('tr').children().eq(columnNo + 1);
+            if ($(this).parent().next('tr').children().eq(columnNo + 1).attr("title") === 'bomb') {
+              count++;
+            }
+
+            i.title = count;
+            count = 0;
+          }
+
+        });
+      };
+
+      placeNumbers();
+      // console.log('new',$('tr').children().attr('title'))
+      
+      var showAllAdjacentZeros = function (context, toShow) {
+        // console.log('context', context);
+        var columnNo = $(this).parent().children().index($(this));
+
+        // var next = $(this).next('td');
+        if (context.next('td').attr("title") === '0' && context.next('td').html() !== '0') {
+          context.next('td').html(toShow);
+          showAllAdjacentZeros(context.next('td'), toShow);
+        }
+        // var prev = context.prev('td');
+        if (context.prev('td').attr("title") === '0' && context.prev('td').html() !== '0') {
+          context.prev('td').html(toShow);
+          showAllAdjacentZeros(context.prev('td'), toShow);
+        }
+        // var above = context.parent().prev('tr').children().eq(columnNo);
+        if (context.parent().prev('tr').children().eq(columnNo).attr("title") === '0' && context.parent().prev('tr').children().eq(columnNo).html() !== '0') {
+          context.parent().prev('tr').children().eq(columnNo).html(toShow);
+          showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo), toShow);
+        }
+        // var aboveLeft = context.parent().prev('tr').children().eq(columnNo - 1);
+        if (context.parent().prev('tr').children().eq(columnNo - 1).attr("title") === '0' && context.parent().prev('tr').children().eq(columnNo - 1).html() !== '0') {
+          context.parent().prev('tr').children().eq(columnNo - 1).html(toShow);
+          showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo - 1), toShow);
+        }
+        // var aboveRight = context.parent().prev('tr').children().eq(columnNo + 1);
+        if (context.parent().prev('tr').children().eq(columnNo + 1).attr("title") === '0' && context.parent().prev('tr').children().eq(columnNo + 1).html() !== '0') {
+          context.parent().prev('tr').children().eq(columnNo + 1).html(toShow);
+          showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo + 1), toShow);
+        }
+        // var below = context.parent().next('tr').children().eq(columnNo);
+        if (context.parent().next('tr').children().eq(columnNo).attr("title") === '0' && context.parent().next('tr').children().eq(columnNo).html() !== '0') {
+          context.parent().next('tr').children().eq(columnNo).html(toShow);
+          showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo), toShow);
+        }
+        // var belowLeft = context.parent().next('tr').children().eq(columnNo - 1);
+        if (context.parent().next('tr').children().eq(columnNo - 1).attr("title") === '0' && context.parent().next('tr').children().eq(columnNo - 1).html() !== '0') {
+          context.parent().next('tr').children().eq(columnNo - 1).html(toShow);
+          showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo - 1), toShow);
+        }
+        // var belowRight = context.parent().next('tr').children().eq(columnNo + 1);
+        if (context.parent().next('tr').children().eq(columnNo + 1).attr("title") === '0' && context.parent().next('tr').children().eq(columnNo + 1).html() !== '0') {
+          context.parent().next('tr').children().eq(columnNo + 1).html(toShow);
+          showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo + 1), toShow);
+        }
+
+        return;
+
+      };
+
+      //on click to display what undernieth
+      $('td').click( function () {
+        var toShow = $(this).attr('title');
+        if (toShow === '0') {
+          //uncover all surrounding zeros :s
+          showAllAdjacentZeros($(this), toShow);
+
+        } else if (toShow === 'bomb') {
+          //you loose
+        }
+        //else its a number and there is nothing to do
+        $(this).html(toShow);
+      });
+
+      //FLAGS!!IMPLEMENT
+
+    </script>
+
+  </body>
+
+</html>
+
+
+
+
