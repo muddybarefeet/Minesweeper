@@ -1,11 +1,10 @@
 $(document).ready(function(){
-  //game logic
 
-  //place numbers
+  //place numbers to show where are relative to the bombs
   var placeNumbers = function () {
     //loop through the grid
     $("tr").children().each(function (element, i) {
-      //if t is no bomb look at the surrounding squares
+      //if it is no bomb look at the surrounding squares
       //set the sum of the bombs to the id of the square
       //look at all surrounding squares and sum bombs
       if (i.id !== 'bomb') {
@@ -54,7 +53,7 @@ $(document).ready(function(){
   };
 
   //place the pieces: bombs first
-  //level 1: 20% level 2: 40% level 3: 60%
+  //level 1: 15% level 2: 30% level 3: 60%
   var placeBombs = function (level) {
     var percent;
     if (level === '1') {
@@ -75,11 +74,12 @@ $(document).ready(function(){
 
   };
 
+  //on choosing a level --- STARTS THE GAME OFF!
   $('.chooseLevel').change(function () {
     placeBombs($('.chooseLevel').val());
   });
 
-  
+  //to uncover all adjacent zeros
   var showAllAdjacentZeros = function (context, toShow) {
     // console.log('in recurse');
     var columnNo = context.parent().children().index(context);
@@ -139,11 +139,6 @@ $(document).ready(function(){
   };
 
   //flag a square
-  /*
-    1 = Left   mouse button
-    2 = Centre mouse button
-    3 = Right  mouse button
-  */
   $('td').mousedown(function(e) {
       if (e.which === 3) {
         //right click and so want to flag the cell
@@ -174,7 +169,7 @@ $(document).ready(function(){
     }
   });
 
-  //start a new game
+  //start a new game- page refresh
   $('.bombImgHeader').click(function() {
       location.reload();
   });
