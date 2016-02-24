@@ -6,24 +6,27 @@
     <title>Minesweeper</title>
     <link rel="stylesheet" href="./styles.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
-    <div class="flexBoard">
+    <div class="centerAll">
       
-      <div>
-        <h1>Minesweeper</h1>
-        
-        <select class="chooseLevel">
-          <option value="1">Pick a level</option>
-          <option value="1">Learner</option>
-          <option value="2">Improver</option>
-          <option value="3">Ninja</option>
-        </select>
-
+      <div class="flexTop">
+        <div class="headerSpace">
+          <h1>Minesweeper</h1>
+        </div>
+        <div class="flexCenter">
+          <select class="chooseLevel">
+            <option value="1">Pick a level to start</option>
+            <option value="1">Learner</option>
+            <option value="2">Improver</option>
+            <option value="3">Ninja</option>
+          </select>
+        </div>
       </div>
 
-      <div class="">
+      <div class="flexBoard">
         <table>
           <tr>
             <td></td>
@@ -196,8 +199,6 @@
         </table>
       </div>
 
-
-
     <script>
       //game logic
 
@@ -206,47 +207,47 @@
         //loop through the grid
         $("tr").children().each(function (element, i) {
           //if t is no bomb look at the surrounding squares
-          //set the sum of the bombs to the title of the square
+          //set the sum of the bombs to the id of the square
           //look at all surrounding squares and sum bombs
-          if (i.title !== 'bomb') {
+          if (i.id !== 'bomb') {
 
             var count = 0;
             var columnNo = $(this).parent().children().index($(this));
 
             // var next = $(this).next('td');
-            if ($(this).next('td').attr("title") === 'bomb') {
+            if ($(this).next('td').attr("id") === 'bomb') {
               count++;
             }
             // var prev = $(this).prev('td');
-            if ($(this).prev('td').attr("title") === 'bomb') {
+            if ($(this).prev('td').attr("id") === 'bomb') {
               count++;
             }
             // var above = $(this).parent().prev('tr').children().eq(columnNo);
-            if ($(this).parent().prev('tr').children().eq(columnNo).attr("title") === 'bomb') {
+            if ($(this).parent().prev('tr').children().eq(columnNo).attr("id") === 'bomb') {
               count++;
             }
             // var aboveLeft = $(this).parent().prev('tr').children().eq(columnNo - 1);
-            if ($(this).parent().prev('tr').children().eq(columnNo - 1).attr("title") === 'bomb') {
+            if ($(this).parent().prev('tr').children().eq(columnNo - 1).attr("id") === 'bomb') {
               count++;
             }
             // var aboveRight = $(this).parent().prev('tr').children().eq(columnNo + 1);
-            if ($(this).parent().prev('tr').children().eq(columnNo + 1).attr("title") === 'bomb') {
+            if ($(this).parent().prev('tr').children().eq(columnNo + 1).attr("id") === 'bomb') {
               count++;
             }
             // var below = $(this).parent().next('tr').children().eq(columnNo);
-            if ($(this).parent().next('tr').children().eq(columnNo).attr("title") === 'bomb') {
+            if ($(this).parent().next('tr').children().eq(columnNo).attr("id") === 'bomb') {
               count++;
             }
             // var belowLeft = $(this).parent().next('tr').children().eq(columnNo - 1);
-            if ($(this).parent().next('tr').children().eq(columnNo - 1).attr("title") === 'bomb') {
+            if ($(this).parent().next('tr').children().eq(columnNo - 1).attr("id") === 'bomb') {
               count++;
             }
             // var belowRight = $(this).parent().next('tr').children().eq(columnNo + 1);
-            if ($(this).parent().next('tr').children().eq(columnNo + 1).attr("title") === 'bomb') {
+            if ($(this).parent().next('tr').children().eq(columnNo + 1).attr("id") === 'bomb') {
               count++;
             }
 
-            i.title = count;
+            i.id = count;
             count = 0;
           }
 
@@ -267,7 +268,7 @@
 
         $('tr').children().each(function (element, i) {
           if (Math.random() <= percent) {
-            i.title = 'bomb';
+            i.id = 'bomb';
           }
         });
 
@@ -285,42 +286,42 @@
         var columnNo = context.parent().children().index(context);
 
         // var next = $(this).next('td');
-        if (context.next('td').attr("title") === '0' && context.next('td').html() === "") {
+        if (context.next('td').attr("id") === '0' && context.next('td').html() === "") {
           context.next('td').html(toShow);
           showAllAdjacentZeros(context.next('td'), toShow);
         }
         // var prev = context.prev('td');
-        if (context.prev('td').attr("title") === '0' && context.prev('td').html() === "") {
+        if (context.prev('td').attr("id") === '0' && context.prev('td').html() === "") {
           context.prev('td').html(toShow);
           showAllAdjacentZeros(context.prev('td'), toShow);
         }
         // // var above = context.parent().prev('tr').children().eq(columnNo);
-        if (context.parent().prev('tr').children().eq(columnNo).attr("title") === '0' && context.parent().prev('tr').children().eq(columnNo).html() === "") {
+        if (context.parent().prev('tr').children().eq(columnNo).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo).html() === "") {
           context.parent().prev('tr').children().eq(columnNo).html(toShow);
           showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo), toShow);
         }
         // // var aboveLeft = context.parent().prev('tr').children().eq(columnNo - 1);
-        if (context.parent().prev('tr').children().eq(columnNo - 1).attr("title") === '0' && context.parent().prev('tr').children().eq(columnNo - 1).html() === "") {
+        if (context.parent().prev('tr').children().eq(columnNo - 1).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo - 1).html() === "") {
           context.parent().prev('tr').children().eq(columnNo - 1).html(toShow);
           showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo - 1), toShow);
         }
         // // var aboveRight = context.parent().prev('tr').children().eq(columnNo + 1);
-        if (context.parent().prev('tr').children().eq(columnNo + 1).attr("title") === '0' && context.parent().prev('tr').children().eq(columnNo + 1).html() === "") {
+        if (context.parent().prev('tr').children().eq(columnNo + 1).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo + 1).html() === "") {
           context.parent().prev('tr').children().eq(columnNo + 1).html(toShow);
           showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo + 1), toShow);
         }
         // // var below = context.parent().next('tr').children().eq(columnNo);
-        if (context.parent().next('tr').children().eq(columnNo).attr("title") === '0' && context.parent().next('tr').children().eq(columnNo).html() === "") {
+        if (context.parent().next('tr').children().eq(columnNo).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo).html() === "") {
           context.parent().next('tr').children().eq(columnNo).html(toShow);
           showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo), toShow);
         }
         // // var belowLeft = context.parent().next('tr').children().eq(columnNo - 1);
-        if (context.parent().next('tr').children().eq(columnNo - 1).attr("title") === '0' && context.parent().next('tr').children().eq(columnNo - 1).html() !== null) {
+        if (context.parent().next('tr').children().eq(columnNo - 1).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo - 1).html() !== null) {
           context.parent().next('tr').children().eq(columnNo - 1).html(toShow);
           showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo - 1), toShow);
         }
         // // var belowRight = context.parent().next('tr').children().eq(columnNo + 1);
-        if (context.parent().next('tr').children().eq(columnNo + 1).attr("title") === '0' && context.parent().next('tr').children().eq(columnNo + 1).html() !== null) {
+        if (context.parent().next('tr').children().eq(columnNo + 1).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo + 1).html() !== null) {
           context.parent().next('tr').children().eq(columnNo + 1).html(toShow);
           showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo + 1), toShow);
         }
@@ -332,12 +333,8 @@
       //on clicking on a bomb reveal all the bombs and show alert
       var revealAllBombs = function () {
         $('tr').children().each(function (_, element) {
-          if (element.title === 'bomb') {
-            // debugger;
-            console.log('i', element) 
-            // element.addClass('explode');
-            element.innerHTML = 'bomb';
-            element.style.color = 'red';
+          if (element.id === 'bomb') {
+            element.innerHTML="<img src='Bomb.png' alt='angryPenguin' class='bombImg'/>";
           }
         });
         //show alert to user
@@ -363,7 +360,7 @@
 
       //on click to display what undernieth
       $('td').click( function () {
-        var toShow = $(this).attr('title');
+        var toShow = $(this).attr('id');
         if (toShow === '0' && $(this).text() !== 'flag') {
           //uncover all surrounding zeros :s
           showAllAdjacentZeros($(this), toShow);
@@ -372,7 +369,7 @@
           //you loose
           //reveal all bombs and color the squares red
           revealAllBombs();
-          $(this).html(toShow);
+          $(this).html("<img src='Bomb.png' alt='angryPenguin' class='bombImg'/>");
         } else if ($(this).text() !== 'flag') { //only render if not flag on this square
           $(this).html(toShow);
         }
