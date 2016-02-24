@@ -60,6 +60,20 @@ td:hover {
   width: 35px;
 }
 
+.grassImg {
+  height: 40px;
+  width: 40px;
+}
+
+.noBorder {
+  border: 0;
+  padding: 0;
+}
+
+.noBorder:hover {
+  background-color: white;
+}
+
 td {
   text-align: center;
   font-family: 'Cabin Sketch', cursive;

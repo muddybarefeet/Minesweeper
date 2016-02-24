@@ -86,42 +86,50 @@ $(document).ready(function(){
 
     // var next = $(this).next('td');
     if (context.next('td').attr("id") === '0' && context.next('td').html() === "") {
-      context.next('td').html(toShow);
+      context.next('td').html("<img src='./assets/images/grass1.jpg' alt='angryPenguin' class='grassImg'/>");
+      context.next('td').addClass('noBorder');
       showAllAdjacentZeros(context.next('td'), toShow);
     }
     // var prev = context.prev('td');
     if (context.prev('td').attr("id") === '0' && context.prev('td').html() === "") {
-      context.prev('td').html(toShow);
+      context.prev('td').html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      context.prev('td').addClass('noBorder');
       showAllAdjacentZeros(context.prev('td'), toShow);
     }
     // // var above = context.parent().prev('tr').children().eq(columnNo);
     if (context.parent().prev('tr').children().eq(columnNo).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo).html() === "") {
-      context.parent().prev('tr').children().eq(columnNo).html(toShow);
+      context.parent().prev('tr').children().eq(columnNo).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      context.parent().prev('tr').children().eq(columnNo).addClass('noBorder');
       showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo), toShow);
     }
     // // var aboveLeft = context.parent().prev('tr').children().eq(columnNo - 1);
     if (context.parent().prev('tr').children().eq(columnNo - 1).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo - 1).html() === "") {
-      context.parent().prev('tr').children().eq(columnNo - 1).html(toShow);
+      context.parent().prev('tr').children().eq(columnNo - 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      context.parent().prev('tr').children().eq(columnNo - 1).addClass('noBorder');
       showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo - 1), toShow);
     }
     // // var aboveRight = context.parent().prev('tr').children().eq(columnNo + 1);
     if (context.parent().prev('tr').children().eq(columnNo + 1).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo + 1).html() === "") {
-      context.parent().prev('tr').children().eq(columnNo + 1).html(toShow);
+      context.parent().prev('tr').children().eq(columnNo + 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      context.parent().prev('tr').children().eq(columnNo + 1).addClass('noBorder');
       showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo + 1), toShow);
     }
     // // var below = context.parent().next('tr').children().eq(columnNo);
     if (context.parent().next('tr').children().eq(columnNo).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo).html() === "") {
-      context.parent().next('tr').children().eq(columnNo).html(toShow);
+      context.parent().next('tr').children().eq(columnNo).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      context.parent().next('tr').children().eq(columnNo).addClass('noBorder');
       showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo), toShow);
     }
     // // var belowLeft = context.parent().next('tr').children().eq(columnNo - 1);
     if (context.parent().next('tr').children().eq(columnNo - 1).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo - 1).html() !== null) {
-      context.parent().next('tr').children().eq(columnNo - 1).html(toShow);
+      context.parent().next('tr').children().eq(columnNo - 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      context.parent().next('tr').children().eq(columnNo - 1).addClass('noBorder');
       showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo - 1), toShow);
     }
     // // var belowRight = context.parent().next('tr').children().eq(columnNo + 1);
     if (context.parent().next('tr').children().eq(columnNo + 1).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo + 1).html() !== null) {
-      context.parent().next('tr').children().eq(columnNo + 1).html(toShow);
+      context.parent().next('tr').children().eq(columnNo + 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      context.parent().next('tr').children().eq(columnNo + 1).addClass('noBorder');
       showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo + 1), toShow);
     }
 
@@ -134,6 +142,7 @@ $(document).ready(function(){
     $('tr').children().each(function (_, element) {
       if (element.id === 'bomb') {
         element.innerHTML="<img src='./assets/images/Bomb.png' alt='angryPenguin' class='bombImg'/>";
+        element.className = 'noBorder';
       }
     });
   };
@@ -143,10 +152,13 @@ $(document).ready(function(){
       if (e.which === 3) {
         //right click and so want to flag the cell
         if ($(this).text() !== 'flag' && $(this).html() === '') {
-          $(this).text('flag');
-          // $(this).html("<img src='flag.png' alt='angryPenguin' class='bombImg'/>");
-        } else if ($(this).text() === 'flag') {
-          $(this).text('');
+          $(this).addClass('noBorder');
+          $(this).html("<img src='./assets/images/flag.png' alt='flag' class='grassImg'/>");
+          $(this).attr("id","flag");
+        } else if ($(this).attr('id') === 'flag') {
+          $(this).attr('id', '');
+          $(this).html('');
+          $(this).removeClass('noBorder');
         }
       }
   });
@@ -155,17 +167,19 @@ $(document).ready(function(){
   //on click to display what undernieth
   $('td').click( function () {
     var toShow = $(this).attr('id');
-    if (toShow === '0' && $(this).text() !== 'flag') {
+    if (toShow === '0' && $(this).attr('id') !== 'flag') {
       //uncover all surrounding zeros :s
       showAllAdjacentZeros($(this), toShow);
-      $(this).html(toShow);
-    } else if (toShow === 'bomb' && $(this).text() !== 'flag') {
+      $(this).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+    } else if (toShow === 'bomb' && $(this).attr('id') !== 'flag') {
       //you loose
       //reveal all bombs and color the squares red
       revealAllBombs();
       $(this).html("<img src='./assets/images/Bomb.png' alt='angryPenguin' class='bombImg'/>");
-    } else if ($(this).text() !== 'flag') { //only render if not flag on this square
+      $(this).addClass('noBorder');
+    } else if ($(this).attr('id') !== 'flag') { //only render if not flag on this square
       $(this).html(toShow);
+      $(this).addClass('noBorder');
     }
   });
 
