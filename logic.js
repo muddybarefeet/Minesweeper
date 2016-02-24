@@ -8,10 +8,8 @@ $(document).ready(function(){
       //set the sum of the bombs to the id of the square
       //look at all surrounding squares and sum bombs
       if (i.id !== 'bomb') {
-
         var count = 0;
         var columnNo = $(this).parent().children().index($(this));
-
         // var next = $(this).next('td');
         if ($(this).next('td').attr("id") === 'bomb') {
           count++;
@@ -44,7 +42,7 @@ $(document).ready(function(){
         if ($(this).parent().next('tr').children().eq(columnNo + 1).attr("id") === 'bomb') {
           count++;
         }
-
+        //set the id of the element to the count
         i.id = count;
         count = 0;
       }
@@ -84,53 +82,53 @@ $(document).ready(function(){
     // console.log('in recurse');
     var columnNo = context.parent().children().index(context);
 
-    // var next = $(this).next('td');
-    if (context.next('td').attr("id") === '0' && context.next('td').html() === "") {
-      context.next('td').html("<img src='./assets/images/grass1.jpg' alt='angryPenguin' class='grassImg'/>");
-      context.next('td').addClass('noBorder');
-      showAllAdjacentZeros(context.next('td'), toShow);
+    var next = context.next('td');
+    if (next.attr("id") === '0' && next.html() === "") {
+      next.html("<img src='./assets/images/grass1.jpg' alt='angryPenguin' class='grassImg'/>");
+      next.addClass('noBorder');
+      showAllAdjacentZeros(next, toShow);
     }
-    // var prev = context.prev('td');
-    if (context.prev('td').attr("id") === '0' && context.prev('td').html() === "") {
-      context.prev('td').html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
-      context.prev('td').addClass('noBorder');
-      showAllAdjacentZeros(context.prev('td'), toShow);
+    var prev = context.prev('td');
+    if (prev.attr("id") === '0' && prev.html() === "") {
+      prev.html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      prev.addClass('noBorder');
+      showAllAdjacentZeros(prev, toShow);
     }
-    // // var above = context.parent().prev('tr').children().eq(columnNo);
-    if (context.parent().prev('tr').children().eq(columnNo).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo).html() === "") {
-      context.parent().prev('tr').children().eq(columnNo).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
-      context.parent().prev('tr').children().eq(columnNo).addClass('noBorder');
-      showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo), toShow);
+    var above = context.parent().prev('tr').children().eq(columnNo);
+    if (above.attr("id") === '0' && above.html() === "") {
+      above.html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      above.addClass('noBorder');
+      showAllAdjacentZeros(above, toShow);
     }
-    // // var aboveLeft = context.parent().prev('tr').children().eq(columnNo - 1);
-    if (context.parent().prev('tr').children().eq(columnNo - 1).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo - 1).html() === "") {
-      context.parent().prev('tr').children().eq(columnNo - 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
-      context.parent().prev('tr').children().eq(columnNo - 1).addClass('noBorder');
-      showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo - 1), toShow);
+    var aboveLeft = context.parent().prev('tr').children().eq(columnNo - 1);
+    if (aboveLeft.attr("id") === '0' && aboveLeft.html() === "") {
+      aboveLeft.html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      aboveLeft.addClass('noBorder');
+      showAllAdjacentZeros(aboveLeft, toShow);
     }
-    // // var aboveRight = context.parent().prev('tr').children().eq(columnNo + 1);
-    if (context.parent().prev('tr').children().eq(columnNo + 1).attr("id") === '0' && context.parent().prev('tr').children().eq(columnNo + 1).html() === "") {
-      context.parent().prev('tr').children().eq(columnNo + 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
-      context.parent().prev('tr').children().eq(columnNo + 1).addClass('noBorder');
-      showAllAdjacentZeros(context.parent().prev('tr').children().eq(columnNo + 1), toShow);
+    var aboveRight = context.parent().prev('tr').children().eq(columnNo + 1);
+    if (aboveRight.attr("id") === '0' && aboveRight.html() === "") {
+      aboveRight.html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      aboveRight.addClass('noBorder');
+      showAllAdjacentZeros(aboveRight, toShow);
     }
-    // // var below = context.parent().next('tr').children().eq(columnNo);
-    if (context.parent().next('tr').children().eq(columnNo).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo).html() === "") {
-      context.parent().next('tr').children().eq(columnNo).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
-      context.parent().next('tr').children().eq(columnNo).addClass('noBorder');
-      showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo), toShow);
+    var below = context.parent().next('tr').children().eq(columnNo);
+    if (below.attr("id") === '0' && below.html() === "") {
+      below.html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      below.addClass('noBorder');
+      showAllAdjacentZeros(below, toShow);
     }
-    // // var belowLeft = context.parent().next('tr').children().eq(columnNo - 1);
-    if (context.parent().next('tr').children().eq(columnNo - 1).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo - 1).html() !== null) {
-      context.parent().next('tr').children().eq(columnNo - 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
-      context.parent().next('tr').children().eq(columnNo - 1).addClass('noBorder');
-      showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo - 1), toShow);
+    var belowLeft = context.parent().next('tr').children().eq(columnNo - 1);
+    if (belowLeft.attr("id") === '0' && belowLeft.html() !== null) {
+      belowLeft.html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      belowLeft.addClass('noBorder');
+      showAllAdjacentZeros(belowLeft, toShow);
     }
-    // // var belowRight = context.parent().next('tr').children().eq(columnNo + 1);
-    if (context.parent().next('tr').children().eq(columnNo + 1).attr("id") === '0' && context.parent().next('tr').children().eq(columnNo + 1).html() !== null) {
-      context.parent().next('tr').children().eq(columnNo + 1).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
-      context.parent().next('tr').children().eq(columnNo + 1).addClass('noBorder');
-      showAllAdjacentZeros(context.parent().next('tr').children().eq(columnNo + 1), toShow);
+    var belowRight = context.parent().next('tr').children().eq(columnNo + 1);
+    if (belowRight.attr("id") === '0' && belowRight.html() !== null) {
+      belowRight.html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
+      belowRight.addClass('noBorder');
+      showAllAdjacentZeros(belowRight, toShow);
     }
 
     return;
@@ -173,11 +171,11 @@ $(document).ready(function(){
       $(this).html("<img src='./assets/images/grass1.jpg' alt='grassTile' class='grassImg'/>");
     } else if (toShow === 'bomb' && $(this).attr('id') !== 'flag') {
       //you loose
-      //reveal all bombs and color the squares red
+      //reveal all bombs
       revealAllBombs();
       $(this).html("<img src='./assets/images/Bomb.png' alt='angryPenguin' class='bombImg'/>");
       $(this).addClass('noBorder');
-    } else if ($(this).attr('id') !== 'flag') { //only render if not flag on this square
+    } else if ($('.chooseLevel').val() !== "noVal" && $(this).attr('id') !== 'flag') {//if the game has not started then don't do anything
       $(this).html(toShow);
       $(this).addClass('noBorder');
     }
