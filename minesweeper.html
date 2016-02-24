@@ -5,17 +5,28 @@
     <meta charset="utf-8">
     <title>Minesweeper</title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="shortcut icon" type="image/png" href="./Bomb.png"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
     <div class="centerAll">
       
-      <div class="flexTop">
-        <div class="headerSpace">
-          <h1>Minesweeper</h1>
+        <div class="flexTop">
+
+          <div class="flexCenter">
+            <img src='Bomb.png' alt='angryPenguin' class='bombImgHeader'/>
+          </div>
+
+          <div class="headerSpace">
+            <h1>Minesweeper</h1>
+          </div>
+
         </div>
+
+
         <div class="flexCenter">
           <select class="chooseLevel">
             <option value="1">Pick a level to start</option>
@@ -24,7 +35,7 @@
             <option value="3">Ninja</option>
           </select>
         </div>
-      </div>
+  
 
       <div class="flexBoard">
         <table>
@@ -197,6 +208,7 @@
             <td></td>
           </tr>
         </table>
+
       </div>
 
     <script>
@@ -337,7 +349,6 @@
             element.innerHTML="<img src='Bomb.png' alt='angryPenguin' class='bombImg'/>";
           }
         });
-        //show alert to user
       };
 
       //flag a square
@@ -349,9 +360,10 @@
       $('td').mousedown(function(e) {
           if (e.which === 3) {
             //right click and so want to flag the cell
-            if ($(this).text() !== 'flag') {
+            if ($(this).text() !== 'flag' && $(this).html() === '') {
               $(this).text('flag');
-            } else {
+              // $(this).html("<img src='flag.png' alt='angryPenguin' class='bombImg'/>");
+            } else if ($(this).text() === 'flag') {
               $(this).text('');
             }
           }
@@ -375,7 +387,10 @@
         }
       });
 
-      //remove on hover tooltip
+      //start a new game
+      $('.bombImgHeader').click(function() {
+          location.reload();
+      });
 
     </script>
 

@@ -2,13 +2,14 @@
 html, body {
   margin: 0;
   height: 100%;
-  font-family: 'Amatic SC', cursive;
+  background-image: url('ice-background.jpg');
 }
 
 .flexBoard {
   display: flex;
   justify-content: center;
   height: 100%;
+  background-color: white;
 }
 
 td {
@@ -18,7 +19,7 @@ td {
 }
 
 td:hover {
-  background-color: turquoise;
+  background-color: orange;
 }
 
 .explode {
@@ -45,10 +46,32 @@ td:hover {
 .headerSpace {
   margin-right: 20px;
   font-size: 30px;
+  font-family: 'Amatic SC', cursive;
+}
+
+.bombImgHeader {
+  height: 70px;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .bombImg {
   height: 35px;
   width: 35px;
 }
+
+td {
+  text-align: center;
+  font-family: 'Cabin Sketch', cursive;
+}
+
+select {
+  margin-top: -15px;
+  margin-bottom: 20px;
+}
+
+
+
+
+
 
