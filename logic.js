@@ -157,7 +157,7 @@ $(document).ready(function(){
           $(this).attr("id","flag");
         } else if ($(this).attr('id') === 'flag') {
           $(this).attr('id', '');
-          $(this).html('');
+          $(this).html('');t
           $(this).removeClass('noBorder');
         }
       }
