@@ -152,10 +152,10 @@ $(document).ready(function(){
         if ($(this).text() !== 'flag' && $(this).html() === '') {
           $(this).addClass('noBorder');
           $(this).html("<img src='./assets/images/flag.png' alt='flag' class='grassImg'/>");
-          $(this).attr("id","flag");
+          $(this).attr("title","flag");
         } else if ($(this).attr('id') === 'flag') {
-          $(this).attr('id', '');
-          $(this).html('');t
+          $(this).attr('title', '');
+          $(this).html('');
           $(this).removeClass('noBorder');
         }
       }
